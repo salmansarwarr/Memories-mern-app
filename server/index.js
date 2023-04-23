@@ -9,6 +9,9 @@ import { connectDB } from './config/db.js';
 const app = express();
 dotenv.config();
 
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`))
+
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
@@ -18,9 +21,6 @@ app.use('/user', userRoutes);
 
 app.get('/', (req, res) => res.send('App is running'));
 
-const PORT = process.env.PORT || 5000;
 
 connectDB()
-    .then(() =>
-        app.listen(PORT, () => console.log(`Server listening on port ${PORT}`))
-    )
+
