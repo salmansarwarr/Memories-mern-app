@@ -70,10 +70,6 @@ const PostDetails = () => {
                     </Typography>
                     <Divider style={{ margin: '20px 0', width: !sm ? '200px' : '55%' }} />
                     <CommentSection post={post} />
-                    <Divider style={{ margin: '20px 0', width: !sm ? '200px' : '55%' }} />
-                    <Typography variant="body1">
-                        <strong>Comments - coming soon!</strong>
-                    </Typography>
                     <Divider style={{ margin: '20px 0' , width: !sm ? '200px' : '55%'}} />
                 </div>
                 <div className={classes.imageSection}>

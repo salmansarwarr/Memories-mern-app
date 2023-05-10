@@ -16,8 +16,10 @@ import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post, setCurrentId }) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const classes = useStyles();
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -125,7 +127,7 @@ const Post = ({ post, setCurrentId }) => {
                         size="small"
                         color="error"
                         onClick={() => {
-                            dispatch(deletePost(post._id));
+                            dispatch(deletePost(post._id, navigate));
                         }}
                     >
                         <DeleteIcon fontSize="small" sx={{ color: 'red' }} />

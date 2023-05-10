@@ -149,9 +149,9 @@ const Auth = () => {
                         onFailure={googleFaliure}
                         cookiePolicy="single_host_origin"
                     />
-                    <Grid container justify="center">
+                    <Grid container justify="center" sx={{justifyContent: "center"}}>
                         <Grid item>
-                            <Button onClick={switchMode}>
+                            <Button onClick={switchMode} fullWidth>
                                 {isSignUp
                                     ? 'Already have an account? Sign In'
                                     : "Don't have an account? Sign Up"}

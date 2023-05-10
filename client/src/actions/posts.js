@@ -72,10 +72,12 @@ export const updatePost = (id, post) => async (dispatch) => {
     }
 };
 
-export const deletePost = (id) => async (dispatch) => {
+export const deletePost = (id, navigate) => async (dispatch) => {
     try {
         await api.deletePost(id);
         dispatch({ type: DELETE, payload: id });
+
+        navigate("/");
     } catch (error) {
         console.log(error.message);
     }

@@ -87,6 +87,7 @@ const Navbar = () => {
                         to="/auth"
                         variant="contained"
                         color="primary"
+                        onClick={() => navigate('/auth')}
                     >
                         Sign In
                     </Button>
