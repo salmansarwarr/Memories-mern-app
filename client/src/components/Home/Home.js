@@ -7,7 +7,6 @@ import {
     TextField,
     Button,
 } from '@mui/material';
-import ChipInput from 'material-ui-chip-input';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { useState } from 'react';
@@ -24,7 +23,6 @@ function useQuery() {
 const Home = () => {
     const [currentId, setCurrentId] = useState(null);
     const [search, setSearch] = useState('');
-    const [tags, setTags] = useState([]);
     const dispatch = useDispatch();
     const classes = useStyles();
     const query = useQuery();
@@ -33,9 +31,9 @@ const Home = () => {
     const searchQuery = query.get('searchQuery');
 
     const searchPost = () => {
-        if (search.trim() || tags) {
-            dispatch(getPostBySearch({ search, tags: tags.join(',') }));
-            navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+        if (search.trim()) {
+            dispatch(getPostBySearch({ search }));
+            navigate(`/posts/search?searchQuery=${search || 'none'}`);
         } else {
             navigate('/');
         }
@@ -46,9 +44,6 @@ const Home = () => {
             searchPost();
         }
     };
-
-    const handleAdd = (tag) => setTags([...tags, tag]);
-    const handleDelete = (tagTodelete) => setTags(tags.filter((tag) => tag !== tagTodelete));
 
     return (
         <Grow in>
@@ -78,14 +73,6 @@ const Home = () => {
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                             />
-                            <ChipInput
-                                styles={{ margin: '10px 0' }}
-                                value={tags}
-                                label="Search Tags"
-                                variant="outlined"
-                                onAdd={handleAdd}
-                                onDelete={handleDelete}
-                            />
                             <Button
                                 onClick={searchPost}
                                 variant="contained"
@@ -99,7 +86,7 @@ const Home = () => {
                             currentId={currentId}
                             setCurrentId={setCurrentId}
                         />
-                        {!searchQuery && !tags.length && (
+                        {!searchQuery && (
                             <Paper className={classes.pagination} elevation={6}>
                                 <Paginate page={page} />
                             </Paper>
